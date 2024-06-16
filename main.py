@@ -1,17 +1,24 @@
-const express = require('express');
-const morgan = require('morgan');
-const session = require('cookie-session');
-const { SERVER_SESSION_SECRET, PORT } = require('./config.js');
-
-let app = express();
-app.set('view engine', 'ejs');
-app.use(morgan('tiny'));
-app.use(session({ secret: SERVER_SESSION_SECRET, maxAge: 24 * 60 * 60 * 1000 }));
-app.use(require('./routes/auth.js'));
-app.use(require('./routes/shares.js'));
-app.use(require('./routes/token.js'));
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).render('error', { user: req.session.user, error: err });
-})
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}...`));
+{
+    "visual": {
+        "name": "aps-viewer-visual",
+        "displayName": "APS Viewer Visual (0.0.8.0)",
+        "guid": "aps_viewer_visual_a4f2990a03324cf79eb44f982719df44",
+        "visualClassName": "Visual",
+        "version": "0.0.8.0",
+        "description": "Visual for displaying shared 2D/3D designs from Autodesk Platform Services.",
+        "supportUrl": "https://github.com/autodesk-platform-services/aps-powerbi-tools",
+        "gitHubUrl": "https://github.com/autodesk-platform-services/aps-powerbi-tools"
+    },
+    "apiVersion": "5.4.0",
+    "author": {
+        "name": "Autodesk Platform Services - Developer Advocacy Support",
+        "email": "aps.help@autodesk.com"
+    },
+    "assets": {
+        "icon": "assets/icon.png"
+    },
+    "style": "style/visual.less",
+    "capabilities": "capabilities.json",
+    "dependencies": null,
+    "stringResources": []
+}
